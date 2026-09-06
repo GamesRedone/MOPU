@@ -1,3 +1,5 @@
+Copyright (c) 2026 Games Redone. All rights reserved.
+
 ⠀ ⠀
 I wasn't able to find a tool that just simply updates your Custom MO2 Profile from one version of a modlist to another. So I made one!
 
