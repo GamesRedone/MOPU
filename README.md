@@ -97,9 +97,10 @@ This is key to how MOPU works.
     > No installation required.
 ⠀
 2. Enter the link for the a GitHub Repo hosting the load order history for your modlist
-    > (e.g.) `https://github.com/GamesRedone/ZISS/`<br>
-    > Click Fetch Repo.
-⠀
+
+(e.g.) `https://github.com/GamesRedone/ZISS/`<br>
+> Click Fetch Repo.<br>
+
 3. Pick the base MO2 profile that your Custom Profile was built from.
     > *(All official profiles that have been uploaded to the GitHub repo will be available as options)*<br><br>
     > So for ZISS, users can choose from :<br>
