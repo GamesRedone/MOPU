@@ -6,8 +6,6 @@
 
 <h1 align="center">MO2 Profile Updater</h1>
 
-<p align="center">Copyright © 2026 Games Redone. All rights reserved.</p>
-
 <br>
 
 MOPU updates/downgrades your MO2 Profile to reflect the changes modlist authors make during updates. With every change YOU made to your Profile preserved. Including any mods you may have added, enabled, or disabled.
