@@ -4,15 +4,19 @@
 
 </div>
 
-<h1 align="center">MO2 Profile Updater</h1>
+<h1 align="center">MO2 Profile Updater (MOPU)</h1>
 
 <br>
 
+## Introduction
+
 MOPU updates/downgrades your MO2 Profile to reflect the changes modlist authors make during updates. With every change YOU made to your Profile preserved. Including any mods you may have added, enabled, or disabled.
 
-<br><br>
-⠀
-# 💾First, MOPU sources the official load order history.
+<br>
+
+<img src="https://raw.githubusercontent.com/GamesRedone/MOPU/main/images/mopu.png" alt="Description" width="50%">
+
+# 💾 First, MOPU sources the official load order history.
 
 <details><summary>Learn More</summary>
 
@@ -32,6 +36,8 @@ This is key to how MOPU works.
 
 <br>
 
+<img src="https://raw.githubusercontent.com/GamesRedone/MOPU/main/images/mopu.png" alt="Description" width="50%">
+
 # 🔍 Then, MOPU makes a list of all the changes.
 
 <details><summary>Learn More</summary>
@@ -46,6 +52,8 @@ This is key to how MOPU works.
 </details>
 
 <br>
+
+<img src="https://raw.githubusercontent.com/GamesRedone/MOPU/main/images/mopu.png" alt="Description" width="50%">
 
 # 🪶 With this list of changes, MOPU updates your profile.
 
