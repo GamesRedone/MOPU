@@ -1,6 +1,6 @@
 MO2 Profile Updater -- Third-Party Notices
 
-This application is closed-source and all rights are reserved by its author,
+This application is closed-source and all rights are reserved by Patrick O'Meara,
 except for the two bundled third-party components listed below, which remain
 under their own original licenses as required.
 
@@ -41,5 +41,4 @@ SOFTWARE.
 --------------------------------------------------------------------------
 
 Everything else in this application -- its source code, user interface design,
-and original artwork (the app icon and logo) -- is Copyright the author.
-All rights reserved.
+and original artwork (the app icon and logo) -- are Copyright © 2026 Patrick O'Meara. All rights reserved.
