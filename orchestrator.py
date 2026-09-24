@@ -266,10 +266,32 @@ def predict_output_files(custom_profile_dir):
     return paths
 
 
+def paths_overlap(path_a, path_b):
+    """True if `path_a` and `path_b` resolve to the same folder, or either one is
+    nested inside the other. Used to keep the Output Folder from overlapping with
+    the Custom Profile folder it's built from -- if they overlap, the "copy every
+    other file over, then write the merged modlist.txt/plugins.txt/loadorder.txt"
+    logic in write_output() below ends up overwriting the very files this tool
+    promises never to touch, instead of writing a separate copy for review."""
+    a = os.path.normcase(os.path.realpath(path_a))
+    b = os.path.normcase(os.path.realpath(path_b))
+    try:
+        common = os.path.commonpath([a, b])
+    except ValueError:
+        return False  # e.g. different drives on Windows -- can't be nested either way
+    return common == a or common == b
+
+
 def write_output(custom_profile_dir, output_dir, result: AnalysisResult, diag=None):
     def d(msg):
         if diag:
             diag.info(msg)
+
+    # Defense-in-depth: gui.py already blocks this in _run_analysis before the user
+    # can even get here, but this module shouldn't rely on the caller having done
+    # that (same reasoning as github_client._parse_repo_url's own self-validation).
+    if paths_overlap(output_dir, custom_profile_dir):
+        raise ValueError(f"Output folder can't be the same as, inside, or contain the Custom Profile folder: {output_dir}")
 
     d(f"Writing output to: {output_dir}")
     os.makedirs(output_dir, exist_ok=True)
