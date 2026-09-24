@@ -46,16 +46,18 @@ def find_profiles_dir(modlist_folder: str) -> str:
     profiles_dir = _find_dir_case_insensitive(modlist_folder, "profiles")
     if profiles_dir is None:
         raise LocalError(
-            "No 'profiles' folder found. For a portable instance, point this at the "
-            "modlist's root folder (e.g. C:\\ZISS\\). For a Regular/Global instance, "
-            "point this directly at the profiles folder itself (e.g. "
-            "C:\\Users\\<You>\\AppData\\Local\\ModOrganizer\\<Instance>\\profiles)."
+            "No 'profiles' folder found.\n\n"
+            "For a portable instance, point this at the modlist's root folder\n"
+            "(e.g.) C:\\ZISS\\\n\n"
+            "For a Regular/Global instance, point this directly at the profiles "
+            "folder itself\n"
+            "(e.g.) C:\\Users\\<You>\\AppData\\Local\\ModOrganizer\\<Instance>\\profiles"
         )
     return profiles_dir
 
 
 def _output_root(modlist_folder: str, profiles_dir: str) -> str:
-    """Where the "MO2 Profile Updater" output folder should be created -- next to
+    """Where the "MOPU" output folder should be created -- next to
     "profiles", not inside it, regardless of which instance type was pointed at."""
     modlist_folder = os.path.normpath(modlist_folder)
     profiles_dir = os.path.normpath(profiles_dir)
@@ -94,7 +96,7 @@ def output_folder_for(modlist_folder: str, modlist_name: str):
     check in advance whether files would be overwritten."""
     profiles_dir = find_profiles_dir(modlist_folder)
     root = _output_root(modlist_folder, profiles_dir)
-    mo2_updater_dir = os.path.normpath(os.path.join(root, "MO2 Profile Updater"))
+    mo2_updater_dir = os.path.normpath(os.path.join(root, "MOPU"))
     output_folder = os.path.normpath(os.path.join(mo2_updater_dir, modlist_name))
     return mo2_updater_dir, output_folder
 
@@ -138,11 +140,11 @@ def create_github_folder_structure(modlist_folder: str, modlist_name: str, modli
     """Scaffolds a loadorder/<Profile>/ folder structure -- matching the layout this
     tool's GitHub-repo flow expects -- from an existing local modlist install.
 
-    The output goes to a deterministic location: "MO2 Profile Updater" next to the
+    The output goes to a deterministic location: "MOPU" next to the
     profiles folder (not inside it, and correctly placed regardless of whether a
     portable or Regular/Global instance path was given), with modlist_name as a
     subfolder of that -- e.g. pointing this at "C:\\ZISS\\" with modlist name "ZISS"
-    writes to "C:\\ZISS\\MO2 Profile Updater\\ZISS\\".
+    writes to "C:\\ZISS\\MOPU\\ZISS\\".
 
     For each profile, the *entire* profile folder is copied over first, then
     everything except modlist.txt/plugins.txt is deleted from the copy (since a
@@ -155,7 +157,7 @@ def create_github_folder_structure(modlist_folder: str, modlist_name: str, modli
     the modlist name and the actual structure that was just generated.
 
     Returns (mo2_updater_dir, sorted_profile_names) -- mo2_updater_dir is the parent
-    "MO2 Profile Updater" folder (not the modlist_name subfolder), since that's what
+    "MOPU" folder (not the modlist_name subfolder), since that's what
     gets opened in the file explorer when done.
     """
     profiles_dir = find_profiles_dir(modlist_folder)
