@@ -1,9 +1,9 @@
 """
 Fetches only the files we actually need from a GitHub repo (LoadOrder/**/*.txt that
-match the version-file naming pattern, plus Changelog/diffs.md) instead of downloading
-the whole repository as a zip. This makes exactly one GitHub API call (a recursive tree
-listing) and then pulls individual file contents from raw.githubusercontent.com, which
-isn't subject to the API's low unauthenticated rate limit.
+match the version-file naming pattern, plus each profile's own Changelog/diffs-<profile>.md)
+instead of downloading the whole repository as a zip. This makes exactly one GitHub API
+call (a recursive tree listing) and then pulls individual file contents from
+raw.githubusercontent.com, which isn't subject to the API's low unauthenticated rate limit.
 """
 
 import os
@@ -19,19 +19,42 @@ class RepoError(Exception):
 
 _UA = {"User-Agent": "mo2-profile-updater"}
 
+# Anchored (whole-string match, not search) and restricted to the characters GitHub
+# actually allows in an owner/repo name -- doesn't rely on gui.py's own REPO_URL_RE
+# having already screened the input first, so this module is safe to call on its
+# own (a future caller, a CLI, direct reuse) without inheriting a GUI-only guard.
+_REPO_URL_RE = re.compile(
+    r"^(?:https?://)?(?:www\.)?github\.com/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+?)(?:\.git)?/?$"
+)
+
+# Generous but bounded -- a modlist repo's tree listing or any single text file it
+# serves has no legitimate reason to approach this size. Caps memory use if a
+# compromised or malicious repo tries to serve an oversized response.
+_MAX_RESPONSE_BYTES = 20 * 1024 * 1024  # 20 MB
+
 
 def _parse_repo_url(url: str):
-    url = url.strip().rstrip("/")
-    m = re.search(r"github\.com/([^/]+)/([^/]+?)(?:\.git)?$", url)
+    url = url.strip()
+    m = _REPO_URL_RE.match(url)
     if not m:
         raise RepoError(f"Doesn't look like a GitHub repo URL: {url}")
-    return m.group(1), m.group(2)
+    owner, repo = m.group(1), m.group(2)
+    if owner in (".", "..") or repo in (".", ".."):
+        raise RepoError(f"Doesn't look like a GitHub repo URL: {url}")
+    return owner, repo
+
+
+def _read_capped(resp, max_bytes=_MAX_RESPONSE_BYTES):
+    data = resp.read(max_bytes + 1)
+    if len(data) > max_bytes:
+        raise RepoError("Response from GitHub was larger than expected -- refusing to load it.")
+    return data
 
 
 def _get_json(url):
     req = urllib.request.Request(url, headers=_UA)
     with urllib.request.urlopen(req, timeout=30) as resp:
-        return json.loads(resp.read().decode("utf-8"))
+        return json.loads(_read_capped(resp).decode("utf-8"))
 
 
 def _get_default_branch(owner, repo):
@@ -49,6 +72,7 @@ def _get_tree(owner, repo, branch):
 
 _MODLIST_RE = re.compile(r"^(v[0-9][^/\s\-]*)-modlist\.txt$", re.IGNORECASE)
 _PLUGINS_RE = re.compile(r"^(v[0-9][^/\s\-]*)-plugins\.txt$", re.IGNORECASE)
+_DIFFS_RE = re.compile(r"^diffs-(.+)\.md$", re.IGNORECASE)
 
 
 class RepoData:
@@ -56,7 +80,7 @@ class RepoData:
 
     def __init__(self, workdir):
         self.workdir = workdir
-        self.diffs_path = None
+        self.diffs_paths = {}  # profile name -> local_path (only set if that profile has one)
         # profile -> version -> {"modlist": local_path, "plugins": local_path or None}
         self.profiles = {}
 
@@ -100,11 +124,6 @@ def fetch_repo_data(repo_url: str, workdir: str, progress_cb=None) -> RepoData:
     if not loadorder_paths:
         raise RepoError("No 'LoadOrder' folder found in this repo.")
 
-    # diffs.md is optional -- if it's missing, rename detection just gets skipped later
-    # and the merge log notes it. Everything else about the repo still works.
-    diffs_candidates = [p for p in changelog_paths if os.path.basename(p).lower() == "diffs.md"]
-    diffs_repo_path = diffs_candidates[0] if diffs_candidates else None
-
     profile_versions = {}  # profile -> version -> {"modlist": repo_path, "plugins": repo_path or None}
     for p in loadorder_paths:
         parts = p.split("/")
@@ -123,7 +142,23 @@ def fetch_repo_data(repo_url: str, workdir: str, progress_cb=None) -> RepoData:
     if not profile_versions:
         raise RepoError("No versioned modlist.txt files found under LoadOrder/<profile>/.")
 
-    to_download = [diffs_repo_path] if diffs_repo_path else []
+    # diffs-<profile>.md is optional, and scoped to its own profile -- matched by
+    # profile name (case-insensitive) against the profile folders actually found
+    # under LoadOrder, so "diffs-CS.md" is only ever consulted for the "CS" profile,
+    # never accidentally applied to "ENB" or any other profile in the same repo. If
+    # a given profile has no matching file, rename detection just gets skipped for
+    # that profile later and the merge log notes it -- everything else still works.
+    profile_names_lower = {name.lower(): name for name in profile_versions.keys()}
+    diffs_repo_path_by_profile = {}  # profile name -> repo path
+    for p in changelog_paths:
+        m = _DIFFS_RE.match(os.path.basename(p))
+        if not m:
+            continue
+        matched_profile = profile_names_lower.get(m.group(1).lower())
+        if matched_profile:
+            diffs_repo_path_by_profile[matched_profile] = p
+
+    to_download = list(diffs_repo_path_by_profile.values())
     for profile, versions in profile_versions.items():
         for v, files in versions.items():
             if "modlist" in files:
@@ -135,6 +170,8 @@ def fetch_repo_data(repo_url: str, workdir: str, progress_cb=None) -> RepoData:
     local_dir = os.path.join(workdir, "fetched")
     os.makedirs(local_dir, exist_ok=True)
 
+    profile_for_diffs_repo_path = {v: k for k, v in diffs_repo_path_by_profile.items()}
+
     total = len(to_download)
     for i, repo_path in enumerate(to_download):
         frac = 0.2 + 0.75 * (i / max(total, 1))
@@ -144,7 +181,7 @@ def fetch_repo_data(repo_url: str, workdir: str, progress_cb=None) -> RepoData:
         req = urllib.request.Request(raw_url, headers=_UA)
         try:
             with urllib.request.urlopen(req, timeout=30) as resp:
-                content = resp.read()
+                content = _read_capped(resp)
         except Exception as e:
             raise RepoError(f"Failed to download {repo_path}: {e}")
 
@@ -152,8 +189,8 @@ def fetch_repo_data(repo_url: str, workdir: str, progress_cb=None) -> RepoData:
         with open(local_path, "wb") as f:
             f.write(content)
 
-        if repo_path == diffs_repo_path:
-            data.diffs_path = local_path
+        if repo_path in profile_for_diffs_repo_path:
+            data.diffs_paths[profile_for_diffs_repo_path[repo_path]] = local_path
 
     for profile, versions in profile_versions.items():
         data.profiles[profile] = {}
