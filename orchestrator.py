@@ -291,7 +291,7 @@ def write_output(custom_profile_dir, output_dir, result: AnalysisResult, diag=No
     # can even get here, but this module shouldn't rely on the caller having done
     # that (same reasoning as github_client._parse_repo_url's own self-validation).
     if paths_overlap(output_dir, custom_profile_dir):
-        raise ValueError(f"Output folder can't be the same as, inside, or contain the Custom Profile folder: {output_dir}")
+        raise ValueError(f"Output folder can't be the same as, or contain, the Custom Profile folder: {output_dir}")
 
     d(f"Writing output to: {output_dir}")
     os.makedirs(output_dir, exist_ok=True)
