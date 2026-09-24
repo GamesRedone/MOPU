@@ -14,7 +14,7 @@ from tkinter import ttk, filedialog, messagebox
 import github_client as gc
 import local_client as lc
 import diffs_generator as dg
-from orchestrator import run_analysis, write_output, predict_output_files
+from orchestrator import run_analysis, write_output, predict_output_files, paths_overlap
 from diagnostic_log import DiagnosticLog
 from assets_util import resource_path
 from font_loader import load_bundled_font, FONT_FAMILY
@@ -619,6 +619,16 @@ class ZissUpdaterApp(tk.Tk):
             return
 
         profile_dir = self.custom_profile_dir.get()
+
+        if paths_overlap(self.output_dir.get(), profile_dir):
+            self._show_error_popup(
+                "Invalid Output Folder",
+                f"This can't be the same as, inside, or containing your Custom Profile "
+                f"folder: {self.output_dir.get()}\n\n"
+                f"Please choose an output folder outside of {profile_dir}.",
+            )
+            return
+
         missing = [fn for fn in ("modlist.txt", "plugins.txt")
                    if not os.path.isfile(os.path.join(profile_dir, fn))]
         if missing:
