@@ -17,6 +17,12 @@ class Entry:
     name: str                  # the mod/plugin name (key used for matching across versions)
     state: Optional[bool]      # True = enabled, False = disabled, None = no state concept (loadorder.txt)
     is_comment: bool = False   # passthrough line, e.g. "# This file was automatically generated..."
+    is_pseudo: bool = False    # modlist.txt only: "*" prefix instead of "+"/"-" -- an MO2-managed
+    # pseudo-mod (DLC, Creation Club content) that isn't a real toggleable mod. Always
+    # effectively "on"; kept as a real (non-comment) entry so it still participates
+    # correctly in Added/Removed/Auto-Update/repositioning logic instead of being
+    # invisible to all of it, but the "*" prefix is preserved verbatim on write since
+    # it means something different from a regular "+" to MO2 itself.
 
 
 def _read_lines(path):
@@ -39,6 +45,8 @@ def parse_modlist(path) -> List[Entry]:
             entries.append(Entry(name=line[1:], state=True))
         elif line.startswith("-"):
             entries.append(Entry(name=line[1:], state=False))
+        elif line.startswith("*"):
+            entries.append(Entry(name=line[1:], state=True, is_pseudo=True))
         elif line.strip() == "":
             continue
         else:
@@ -78,6 +86,8 @@ def write_modlist(path, entries: List[Entry]):
     for e in entries:
         if e.is_comment:
             lines.append(e.name)
+        elif e.is_pseudo:
+            lines.append("*" + e.name)
         else:
             lines.append(("+" if e.state else "-") + e.name)
     with open(path, "wb") as f:
