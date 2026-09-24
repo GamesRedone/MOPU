@@ -52,7 +52,7 @@ COLOR_TROUGH = "#c8e6f7"
 
 class ZissUpdaterApp(tk.Tk):
     PLACEHOLDER = "---"  # sentinel value for not-yet-selected dropdowns
-    VERSION = "1.0.1"
+    VERSION = "1.0.2"
     NORMAL_GEOMETRY = "720x760"  # fixed size for every step except Review
 
     def __init__(self):
@@ -624,8 +624,8 @@ class ZissUpdaterApp(tk.Tk):
             self._show_error_popup(
                 "Invalid Output Folder",
                 f"This can't be the same as, or contain, your Custom Profile "
-                f"folder: {self.output_dir.get()}\n\n"
-                f"Please choose an output folder outside of {profile_dir}.",
+                f"folder:\n{self.output_dir.get()}\n\n"
+                f"Please choose an output folder outside of\n{profile_dir}.",
             )
             return
 
