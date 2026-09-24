@@ -10,7 +10,7 @@
 
 ## Introduction
 
-MOPU updates/downgrades your MO2 Profile to reflect the changes modlist authors make during updates. With every change YOU made to your Profile preserved. Including any mods you may have added, enabled, or disabled.
+MOPU updates/downgrades your MO2 Profile to reflect the changes a modlist author makes during an update. With every change YOU made to your Profile preserved. Including any mods you may have added, enabled, or disabled.
 
 <br>
 
@@ -24,14 +24,10 @@ MOPU updates/downgrades your MO2 Profile to reflect the changes modlist authors 
 
 <br>
 
-Add support for your own modlist, or any modlist!
+Adding support for your own modlist, or any modlist, is easy!
 
-The files `modlist.txt` and `plugins.txt`, for every version of the modlist you would like MOPU to support, must be uploaded to a public GitHub repo. With a minimum of 2 load order versions needed to create a version history.
-
-This is key to how MOPU works.
-
-👍 MOPU has a built in tool to help you package up your Load Order for upload.
-> As long as the repo is public, MOPU will be able to download the files it needs.<br>
+👍 MOPU has a built in tool to help you package up your Load Order for upload to GitHub. The new home of your modlist's version history.
+> Once you or the modlist author uploads a minimum of 2 load order versions, your good to go!<br>
 > Instructions are listed in the [How to Setup a GitHub Repo](https://github.com/GamesRedone/MOPU/new/main#how-to-setup-a-github-repo) section below.
 
 </details>
@@ -122,6 +118,14 @@ This is key to how MOPU works.
     > (e.g.) `C:/ZISS/profiles/`
 
 <br>
+
+# Dos & Don'ts
+
+- ***DO NOT*** remove any mods. Unwanted mods should be disabled.
+> *Your modlist installer will just end up reinstalling any mods you remove when you update your modlist.*
+- ***DO NOT*** rearrange the sorting of any mods.
+- *Wabbajack Users* - ***DO NOT*** rename a mod with the prefix [NoDelete].
+> If you wish to setup a custom configuration for a mod
     
 # How to Setup a GitHub Repo⠀
 
