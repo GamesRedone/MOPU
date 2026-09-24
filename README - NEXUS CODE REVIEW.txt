@@ -27,7 +27,9 @@ touched by modlist updates) are kept exactly as they were, followed by the merge
 
 The result is written to the output folder you choose. **Any files already in that
 folder are overwritten** -- the app warns about this on the folder-selection screen.
-Your original custom profile folder itself is never modified.
+Your original custom profile folder itself is never modified -- enforced by a check
+that rejects an output folder that's the same as, inside, or containing the custom
+profile folder, before anything is written.
 
 Only the files actually needed from the repo are downloaded (not the whole repository),
 and everything downloaded is written to a temporary folder that's deleted automatically
