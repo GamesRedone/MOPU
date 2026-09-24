@@ -24,11 +24,21 @@ _SECTION_RE = re.compile(
     r"##\s*v?([0-9][^\s]*)\s*(?:→|->)\s*v?([0-9][^\s]*)", re.IGNORECASE
 )
 _RENAME_LINE_RE = re.compile(r"^-\s*(.+?)\s*(?:→|->)\s*(.+?)\s*$")
+_LEADING_TAG_RE = re.compile(r"^\[\s*(?:MOD|PLUGIN)\s*\]\s*", re.IGNORECASE)
 
 
 def _strip_trailing_annotation(name: str) -> str:
     """Strip trailing ' — dYYYY.M.D.N' style annotations some entries carry."""
     return re.split(r"\s+—\s+", name)[0].strip()
+
+
+def _strip_leading_tag(name: str) -> str:
+    """Strip a leading '[ MOD ]' / '[ PLUGIN ]' tag, e.g. from a rename line written
+    as "- [ MOD ] OldName → NewName" (the same [ MOD ]/[ PLUGIN ] tagging MOPU's own
+    change log uses). Without this, the tag text would end up treated as part of the
+    name itself and never match the real entry in the base modlist/plugins file, so
+    the rename would silently fail to apply."""
+    return _LEADING_TAG_RE.sub("", name)
 
 
 def parse_diffs_md(text: str) -> Dict[Tuple[str, str], DiffStep]:
@@ -44,8 +54,13 @@ def parse_diffs_md(text: str) -> Dict[Tuple[str, str], DiffStep]:
 
         step = DiffStep(old_version=old_v, new_version=new_v)
 
+        # "[^\n]*" (rather than "\s*") after "Renamed" tolerates a trailing count some
+        # authors add to the heading itself, e.g. "### Renamed (1)" -- only the exact
+        # word right after "###" is what's matched on, so nothing before the newline
+        # matters. Only the first "### Renamed" section in the chunk is used; a
+        # version step is expected to have at most one.
         renamed_match = re.search(
-            r"###\s*Renamed\s*\n(.*?)(?=\n###|\Z)", chunk, re.DOTALL | re.IGNORECASE
+            r"###\s*Renamed\b[^\n]*\n(.*?)(?=\n###|\Z)", chunk, re.DOTALL | re.IGNORECASE
         )
         if renamed_match:
             for line in renamed_match.group(1).splitlines():
@@ -54,8 +69,8 @@ def parse_diffs_md(text: str) -> Dict[Tuple[str, str], DiffStep]:
                     continue
                 rm = _RENAME_LINE_RE.match(line)
                 if rm:
-                    old_name = _strip_trailing_annotation(rm.group(1))
-                    new_name = _strip_trailing_annotation(rm.group(2))
+                    old_name = _strip_trailing_annotation(_strip_leading_tag(rm.group(1)))
+                    new_name = _strip_trailing_annotation(_strip_leading_tag(rm.group(2)))
                     step.renamed[old_name] = new_name
 
         steps[(old_v, new_v)] = step
