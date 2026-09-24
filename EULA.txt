@@ -1,0 +1,242 @@
+MOPU | END USER LICENSE AGREEMENT
+Last updated September 21, 2026
+
+MOPU ("the Software" or "the Licensed Application") is licensed to You (the
+"End-User") by Games Redone ("Licensor"), for use only under the terms of
+this End User License Agreement ("Agreement").
+
+By downloading, installing, or using the Software, You indicate that You
+agree to be bound by all of the terms and conditions of this Agreement. If
+You do not agree to these terms, do not download, install, or use the
+Software.
+
+Copyright (c) 2026 Games Redone. All rights reserved.
+
+
+TABLE OF CONTENTS
+------------------
+1.  THE APPLICATION
+2.  SCOPE OF LICENSE
+3.  TECHNICAL REQUIREMENTS
+4.  NO MAINTENANCE AND SUPPORT
+5.  LIABILITY
+6.  WARRANTY
+7.  CLAIMS
+8.  LEGAL COMPLIANCE
+9.  CONTACT INFORMATION
+10. TERMINATION
+11. INTELLECTUAL PROPERTY RIGHTS
+12. APPLICABLE LAW
+13. MISCELLANEOUS
+
+
+1. THE APPLICATION
+-------------------
+MOPU is a piece of software created to keep a user's custom Mod Organizer 2
+("MO2") profile aligned with changes made by a modlist's author over time,
+without requiring the user to manually track or re-apply those changes by
+hand, and without disturbing customizations the user has made to their own
+profile.
+
+Given a modlist repository hosted by its author on GitHub, a base profile
+within that repository, a version the user's profile is currently based on,
+and a version the user wishes to update to, the Software compares the two
+official versions of that profile and applies the differences it
+identifies -- including mods added, removed, or renamed by the modlist
+author, and changes to a mod's default enabled or disabled state -- to a
+copy of the user's profile.
+
+The Software modifies only three files associated with an MO2 profile:
+modlist.txt, plugins.txt, and loadorder.txt. It does not install, download,
+modify, or delete any mod files, archives, or other content referenced by
+those files. The Software does not modify the user's original profile in
+place; all output is written to a separate location of the user's choosing
+for the user's own review before use.
+
+The Software requires an internet connection solely to retrieve modlist
+version data from a GitHub repository address supplied by the user, and
+performs no other network communication.
+
+The Software is not tailored to comply with industry-specific regulations
+(such as the Health Insurance Portability and Accountability Act (HIPAA) or
+the Federal Information Security Management Act (FISMA)). If Your use of the
+Software would be subject to such regulations, You may not use the
+Software.
+
+
+2. SCOPE OF LICENSE
+--------------------
+2.1  Licensor grants You a non-exclusive, non-transferable, revocable,
+     limited license to install and use the Software, in executable form
+     only, for Your own personal, non-commercial use. Licensor reserves all
+     rights not expressly granted to You under this Agreement.
+
+2.2  You may not, and may not permit any third party to: reverse engineer,
+     disassemble, decompile, translate, or otherwise attempt to derive the
+     source code of the Software, or any part thereof, except where such
+     restriction is prohibited by applicable law notwithstanding this
+     limitation.
+
+2.3  You may not upload, host, mirror, distribute, re-distribute, sell,
+     rent, lease, sublicense, or otherwise make the Software (or any copy of
+     it, in whole or in part) available to any third party through any
+     website, file-hosting service, storage repository, or other platform
+     other than the official distribution channels designated by Licensor.
+     Any such distribution must always link to or originate from an
+     official channel designated by Licensor, rather than hosting a copy
+     independently.
+
+2.4  You may not remove, obscure, or alter any copyright, trademark, or
+     other proprietary notices contained in or on the Software.
+
+2.5  You may make one copy of the Software solely for Your own backup
+     purposes, provided such copy:
+       (a) is stored only on a computer or storage medium that You own or
+           control;
+       (b) is not made accessible to any unauthorized third party; and
+       (c) retains all copyright and proprietary notices.
+     Any such copy remains subject to the terms of this Agreement. If You
+     transfer ownership or control of a computer on which the Software is
+     installed to a third party, You must first uninstall and remove all
+     copies of the Software from that computer.
+
+2.6  Any violation of the obligations described in this Section 2,
+     including any attempt to do so, may result in termination of this
+     license under Section 10 and may subject You to legal liability.
+
+2.7  Licensor reserves the right to modify the terms and conditions of this
+     Agreement at any time. Continued use of the Software after such
+     modification constitutes Your acceptance of the revised terms.
+
+
+3. TECHNICAL REQUIREMENTS
+--------------------------
+The Software is intended for use on Windows-based personal computers
+meeting the requirements necessary to run Mod Organizer 2. Licensor does
+not guarantee the Software's compatibility with any specific hardware or
+software configuration.
+
+
+4. NO MAINTENANCE AND SUPPORT
+------------------------------
+4.1  Licensor is not obligated, expressly or impliedly, to provide any
+     maintenance, updates, technical assistance, or other support for the
+     Software.
+
+
+5. LIABILITY
+-------------
+5.1  To the maximum extent permitted by applicable law, Licensor shall not
+     be liable for any indirect, incidental, special, consequential, or
+     punitive damages, or any loss of data, profits, or goodwill, arising
+     out of or related to Your use of or inability to use the Software,
+     even if Licensor has been advised of the possibility of such damages.
+
+5.2  The Software modifies files related to Your MO2 profile. You are
+     solely responsible for maintaining Your own backups of any files,
+     profiles, or data before using the Software. Licensor is not
+     responsible for any data loss resulting from Your use of the Software,
+     including any loss resulting from unauthorized modification of the
+     Software.
+
+
+6. WARRANTY
+------------
+6.1  Licensor warrants that, to the best of its knowledge, the Software is
+     free of spyware, trojan horses, viruses, or other malware at the time
+     of Your download from an official distribution channel.
+
+6.2  EXCEPT AS EXPRESSLY STATED IN SECTION 6.1, THE SOFTWARE IS PROVIDED
+     "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTY OF ANY KIND, EITHER
+     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
+     WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+     NON-INFRINGEMENT.
+
+6.3  No warranty is provided for the Software if it has been modified,
+     combined with inappropriate hardware or software, used other than as
+     intended, or affected by any circumstance outside of Licensor's
+     reasonable control.
+
+6.4  You are encouraged to inspect the Software after installation and to
+     notify Licensor of any defect discovered, using the contact
+     information provided in Section 9.
+
+
+7. CLAIMS
+----------
+Licensor is solely responsible for addressing any claims by You or any
+third party relating to the Software or Your possession and/or use of it,
+including but not limited to:
+  (i)   product liability claims;
+  (ii)  any claim that the Software fails to conform to an applicable legal
+        or regulatory requirement; and
+  (iii) claims arising under consumer protection, privacy, or similar
+        legislation.
+
+
+8. LEGAL COMPLIANCE
+---------------------
+You represent and warrant that You are not located in a country that is
+subject to a U.S. Government embargo, or that has been designated by the
+U.S. Government as a "terrorist supporting" country, and that You are not
+listed on any U.S. Government list of prohibited or restricted parties.
+
+
+9. CONTACT INFORMATION
+------------------------
+For general inquiries, complaints, questions, or claims concerning the
+Software, please contact:
+
+    Games Redone
+    legal@gamesredone.com
+
+
+10. TERMINATION
+-----------------
+This license is effective until terminated by Licensor or by You. Your
+rights under this license will terminate automatically, without notice, if
+You fail to comply with any term of this Agreement. Upon termination, You
+must stop all use of the Software and destroy all copies of it in Your
+possession or control.
+
+
+11. INTELLECTUAL PROPERTY RIGHTS
+-----------------------------------
+11.1  The Software, including its source code, user interface design, and
+      original artwork, is the exclusive property of Games Redone and is
+      protected by copyright and other intellectual property laws. All
+      rights not expressly granted to You under this Agreement are
+      reserved by Licensor.
+
+11.2  The Software incorporates certain third-party components distributed
+      under their own open-source licenses, the notices for which are
+      included with the Software's distribution. Use of those specific
+      components remains subject to their respective licenses; nothing in
+      this Agreement is intended to restrict rights granted under those
+      licenses, and nothing in those licenses extends to any other part of
+      the Software.
+
+11.3  In the event of any third-party claim that the Software, or Your
+      possession or use of it, infringes that third party's intellectual
+      property rights, Licensor will be solely responsible for the
+      investigation, defense, settlement, and discharge of any such claim.
+
+
+12. APPLICABLE LAW
+--------------------
+This Agreement is governed by the laws of the State of Texas, excluding its
+conflict-of-law rules.
+
+
+13. MISCELLANEOUS
+--------------------
+13.1  If any provision of this Agreement is held to be invalid or
+      unenforceable, the remaining provisions will remain in full force and
+      effect, and the invalid or unenforceable provision will be deemed
+      modified to the minimum extent necessary to make it valid and
+      enforceable while achieving its original intent.
+
+13.2  This Agreement constitutes the entire agreement between You and
+      Licensor regarding the Software. Any amendment to this Agreement must
+      be made in writing by Licensor to be effective, except as described
+      in Section 2.7.
