@@ -623,7 +623,7 @@ class ZissUpdaterApp(tk.Tk):
         if paths_overlap(self.output_dir.get(), profile_dir):
             self._show_error_popup(
                 "Invalid Output Folder",
-                f"This can't be the same as, inside, or containing your Custom Profile "
+                f"This can't be the same as, or contain, your Custom Profile "
                 f"folder: {self.output_dir.get()}\n\n"
                 f"Please choose an output folder outside of {profile_dir}.",
             )
