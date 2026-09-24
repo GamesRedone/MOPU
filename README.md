@@ -4,7 +4,7 @@
 
 </div>
 
-<h1 align="center">MO2 Profile Updater (MOPU)</h1>
+<h1 align="center">MOPU - The MO2 Profile Updater</h1>
 
 <br>
 
@@ -14,9 +14,11 @@ MOPU updates/downgrades your MO2 Profile to reflect the changes modlist authors 
 
 <br>
 
-<img src="https://raw.githubusercontent.com/GamesRedone/MOPU/main/images/mopu.png" alt="Description" width="50%">
-
-# 💾 First, MOPU sources the official load order history.
+<div align="center">
+<img src="https://raw.githubusercontent.com/GamesRedone/MOPU/main/images/mopu_1.png" alt="Description" width="50%">
+<br>
+<h2>💾 First, MOPU sources the official load order history.</h2>
+</div>
 
 <details><summary>Learn More</summary>
 
@@ -36,9 +38,11 @@ This is key to how MOPU works.
 
 <br>
 
-<img src="https://raw.githubusercontent.com/GamesRedone/MOPU/main/images/mopu.png" alt="Description" width="50%">
-
-# 🔍 Then, MOPU makes a list of all the changes.
+<div align="center">
+<img src="https://raw.githubusercontent.com/GamesRedone/MOPU/main/images/mopu_2.png" alt="Description" width="75%">
+<br>
+<h2>🔍 Then, MOPU makes a list of all the changes.</h2>
+</div>
 
 <details><summary>Learn More</summary>
 
@@ -53,9 +57,12 @@ This is key to how MOPU works.
 
 <br>
 
-<img src="https://raw.githubusercontent.com/GamesRedone/MOPU/main/images/mopu.png" alt="Description" width="50%">
+<div align="center">
+<img src="https://raw.githubusercontent.com/GamesRedone/MOPU/main/images/mopu_3.png" alt="Description" width="50%">
+<br>
+<H2>🪶 With this list of changes, MOPU updates your profile.</H2>
+</div>
 
-# 🪶 With this list of changes, MOPU updates your profile.
 
 <details><summary>Learn More</summary>
 
