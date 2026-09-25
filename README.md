@@ -10,7 +10,7 @@
 
 ## Introduction
 
-MOPU updates/downgrades your MO2 Profile to reflect the changes a modlist author makes during an update. With every change YOU made to your Profile preserved. Including any mods you may have added, enabled, or disabled.
+MOPU updates/downgrades your custom MO2 Profile to reflect the changes a modlist author makes during an update. Such as; mods they added, removed, renamed, re-positioned, or enabled/disabled. With every change YOU made to your Profile preserved. Including any mods you may have added, enabled, or disabled.
 
 <br>
 
@@ -27,7 +27,7 @@ MOPU updates/downgrades your MO2 Profile to reflect the changes a modlist author
 Adding support for your own modlist, or any modlist, is easy!
 
 👍 MOPU has a built in tool to help you package up your Load Order for upload to GitHub. The new home of your modlist's version history.
-> Once you or the modlist author uploads a minimum of 2 load order versions, your good to go!<br>
+> Once you, or the modlist author, uploads a minimum of 2 load order versions, anyone can use the GitHub repository to update their profile!<br>
 > Instructions are listed in the [How to Setup a GitHub Repo](https://github.com/GamesRedone/MOPU/new/main#how-to-setup-a-github-repo) section below.
 
 </details>
@@ -64,7 +64,7 @@ Adding support for your own modlist, or any modlist, is easy!
 
 <br>
 
-**This mod only edits these three files in your MO2 Profile :**
+**MOPU only edits these three files in your MO2 Profile :**
 > modlist.txt<br>
 > plugins.txt<br>
 > loadorder.txt<br>
@@ -107,8 +107,6 @@ Be sure to review the important [Dos & Don't](#dos-donts) before using MOPU.
     > With the ability to select the exact modlist version of their Custom MO2 Profile *(e.g. `ZISS v1.2.0`)*,<br>
     > and the version they want to update to *(e.g. `ZISS v1.2.1`)*.
 4. Point to the folder of your Custom MO2 Profile, as well as the folder for your output and click Analyze My Profile.
-    > Do not set 
-    > The Log Icon will bring up a window allowing you to preview ***ALL*** the changes MOPU has prepared to make to your profile.
 5. After reviewing, click Confirm Profile Update. If the Output folder is ***NOT*** within your MO2 Profiles folder already, copy the folder to your profiles folder.
     > (e.g.) `C:/ZISS/profiles/`
 
@@ -116,7 +114,9 @@ Be sure to review the important [Dos & Don't](#dos-donts) before using MOPU.
 
 # Dos & Don'ts
 
-Follow these best practices when editing the load order for your modlist to ensure your changes are properly preserved.
+*A majority of these Dos & Don'ts are simply the best practices for updating a customized modlist.*<br>
+
+Follow this guide when editing the load order for your modlist to ensure your changes are properly preserved.
 
 <br>
 
@@ -144,15 +144,21 @@ Follow these best practices when editing the load order for your modlist to ensu
     > Modlist installers like Wabbajack will wipe out any custom MO2 profiles within your modlist folder during an update.<br>
     > Backup your profile before ***AND*** after using MOPU.<br><br>
     > The folder for your profile can be found within your modlists `profiles` folder.<br>
-    > (e.g.) `C:\ZISS\profiles\`<br>
-    > (e.g.) `C:\Users\<YourUsername>\AppData\Local\ModOrganizer\<InstanceName>\profiles\<ProfileName>`
+    ```
+    (e.g.) C:\ZISS\profiles\
+    (e.g.) C:\Users\<YourUsername>\AppData\Local\ModOrganizer\<InstanceName>\profiles\<ProfileName>
+    ```
     
 - ***YOU SHOULD*** backup your Mod Files for the mods you added ***(+)*** your custom MO2 Separators.
-    > Modlist installers like Wabbajack will wipe out any customizations within your modlist folder during an update.<br><br>
+    > Modlist installers like Wabbajack will wipe out any customizations within your modlist folder during an update.
     > When using Wabbajack, you can backup any mods/separators that you have added by adding the prefix `[NoDelete]` to the name of the mod/separator.<br>
-    > (e.g.) `[NoDelete]Immersive Armors` or `[NoDelete](CUSTOM)Lux - Via (patch hub)`<br><br>
-    > If you are not using Wabbajack you can backup any mods you have added by copying the mod folder(s)/separator folder(s) within the MO2 `mods` directory.<br>
-    > (e.g.) `C:\ZISS\mods\`
+    ```
+    (e.g.) [NoDelete]Immersive Armors` or `[NoDelete](CUSTOM)Lux - Via (patch hub)
+    ```
+    > If you are not using Wabbajack you can backup any mods you have added by copying the mod folder(s)/separator folder(s) within the MO2 `mods` directory.
+    ```
+    (e.g.) C:\ZISS\mods\
+    ```
     
 - ***YOU SHOULD*** update your modlist with your modlist installer before using your updated MO2 profile.
     > MOPU is ***NOT*** a modlist installer.<br><br>
@@ -175,18 +181,20 @@ Repeat for every version of the modlist that you would like MOPU to support.
 
 <br>
 
-> YourRepo/<br>
-> ├── LoadOrder/<br>
-> │   ├── <ProfileName>/<br>
-> │   │   ├── v1.0.0-modlist.txt<br>
-> │   │   ├── v1.0.0-plugins.txt<br>
-> │   │   ├── v1.1.0-modlist.txt<br>
-> │   │   ├── v1.1.0-plugins.txt<br>
-> │   │   └── ...<br>
-> │   └── <AnotherProfileName>/<br>
-> │       └── ...<br>
-> └── Changelog/<br>
->    └── diffs.md
+```
+YourRepo/
+├── LoadOrder/
+│   ├── <ProfileName>/
+│   │   ├── v1.0.0-modlist.txt
+│   │   ├── v1.0.0-plugins.txt
+│   │   ├── v1.1.0-modlist.txt
+│   │   ├── v1.1.0-plugins.txt
+│   │   └── ...
+│   └── <AnotherProfileName>/
+│       └── ...
+└── Changelog/
+    └── diffs.md
+```
 <br>
 
 ## *Folder Structure*
@@ -207,15 +215,53 @@ Repeat for every version of the modlist that you would like MOPU to support.
 ⠀ ⠀
 ### diffs.md | Format<br>
 
-> ## v1.0.0 → v1.1.0<br><br>
-> 
-> ### Renamed<br>
-> - Old Mod Name → New Mod Name<br>
-> - Another Old Name → Another New Name<br>
->
+```
+## v1.0.0 → v1.1.0
+
+### Renamed
+- Old Mod Name → New Mod Name
+- Another Old Name → Another New Name
+```
 
 <br>
 
 I typically like to include other information as well in my diffs.md file, although this is all MOPU needs.
 Since there is no way to reliably generate a list of Renamed Mods, we must manually enter them.
 <br><br>
+
+## Error Log
+
+A diagnostic log for troubleshooting is generated automatically. Please include a copy of this log when reporting any issues/bugs.
+
+All issues/bugs must be reported through the issues page on GitHub. 
+
+You can find this log in the output folder of your updated MO2 Profile.
+
+`<Output Folder>\MOPU\mopu-error-log-<YYYY-MM-DD>_<HH-MM-SS>.txt`
+
+<br>
+
+### *Error Reference*
+
+| Stage | Error | Trigger |
+|---|---|---|
+| Fetch Repo | "Please enter a GitHub repo URL first." | URL field empty |
+| Fetch Repo | "Please enter a GitHub repository URL in this format: github.com/GamesRedone/ZISS" | URL doesn't match the expected pattern |
+| Fetch Repo | "Doesn't look like a GitHub repo URL: {url}" | URL parse failed |
+| Fetch Repo | "Couldn't read the repository tree for {owner}/{repo}. Check the URL." | GitHub API call failed (bad repo, private repo, rate limit, network) |
+| Fetch Repo | "No 'LoadOrder' folder found in this repo." | Repo doesn't follow the expected layout |
+| Fetch Repo | "No versioned modlist.txt files found under LoadOrder/<profile>/." | No vX.Y.Z-modlist.txt files present |
+| Fetch Repo | "No profile subfolders found inside LoadOrder." | LoadOrder folder is empty |
+| Fetch Repo | "Failed to download {path}: {e}" | A specific file failed to download after the tree listing succeeded |
+| Analyze | "No modlist.txt found in {folder} -- is this a valid MO2 profile folder?" | Selected custom profile folder is missing modlist.txt |
+| Analyze | "Current or target version not found in available versions." | Version chain couldn't be built (shouldn't normally happen via the UI, since versions come from a dropdown) |
+| Review→Finalize | "Please select both a profile folder and an output folder." | Either path field left empty |
+| Review→Finalize | "This doesn't look like a valid MO2 profile folder -- it's missing modlist.txt and/or plugins.txt." | Selected folder missing one of the required files |
+| Finalize | "Error writing output: {e}" | Any I/O failure writing modlist.txt/plugins.txt/loadorder.txt/saves/other files (permissions, disk full, path too long) |
+| Done | "Error saving log" | Saving the log preview text failed |
+| Prepare Files | "Please enter the file path/name/version first." | Any of the three fields left empty in that helper |
+| Prepare Files | "Please enter the modlist version using Semantic Versioning" | Version doesn't match vX.Y.Z |
+| Prepare Files | "Modlist folder not found: {path}" | Path doesn't exist |
+| Prepare Files | "No 'profiles' folder found. For a portable instance..." | Neither a profiles folder nor a valid root folder found |
+| Prepare Files | "No profiles with both modlist.txt and plugins.txt were found..." | No complete profiles to scaffold |
+| Prepare Files | generic "Error: {e}" | Any other exception during folder generation |
