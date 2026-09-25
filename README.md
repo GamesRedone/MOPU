@@ -17,7 +17,7 @@ MOPU updates/downgrades your custom MO2 Profile to reflect the changes a modlist
 <div align="center">
 <img src="https://raw.githubusercontent.com/GamesRedone/MOPU/main/images/mopu_readme1.png" alt="Description" width="50%">
 <br>
-<h2>💾 First, MOPU sources the official load order history.</h2>
+<h2>1. MOPU sources the official load order history.</h2>
 </div>
 
 <details><summary>Learn More</summary>
@@ -27,8 +27,12 @@ MOPU updates/downgrades your custom MO2 Profile to reflect the changes a modlist
 Adding support for your own modlist, or any modlist, is easy!
 
 👍 MOPU has a built in tool to help you package up your Load Order for upload to GitHub. The new home of your modlist's version history.
-> Once you, or the modlist author, uploads a minimum of 2 load order versions, anyone can use the GitHub repository to update their profile!<br>
-> Instructions are listed in the [How to Setup a GitHub Repo](https://github.com/GamesRedone/MOPU/new/main#how-to-setup-a-github-repo) section below.
+
+Once you, or the modlist author, uploads a minimum of ***2 load order versions***, anyone can use the repo to update their profile!
+
+> Instructions are listed in the [How to Setup a GitHub Repo](https://github.com/GamesRedone/MOPU/new/main#how-to-setup-a-github-repo) section below.<br><br>
+> Checkout the [MOPU-Test](https://github.com/GamesRedone/MOPU-Test) Repo if you would like to see a live example.<br>
+> Two test profiles are included so you can tryout MOPU.
 
 </details>
 
@@ -37,17 +41,18 @@ Adding support for your own modlist, or any modlist, is easy!
 <div align="center">
 <img src="https://raw.githubusercontent.com/GamesRedone/MOPU/main/images/mopu_readme2.png" alt="Description" width="75%">
 <br>
-<h2>🔍 Then, MOPU makes a list of all the changes.</h2>
+<h2>2. MOPU makes a list of all the changes.</h2>
 </div>
 
 <details><summary>Learn More</summary>
 
 <br>
 
-- Mods the modlist author added
-- Mods they removed
-- Mods they have enabled/disabled
-- Mods they have renamed
+- Mods/plugins the modlist author added
+- Mods/plugins they have renamed
+- Mods/plugins they removed
+- Mods/plugins they Re-positioned
+- Mods/plugins they have enabled/disabled
 
 </details>
 
@@ -56,7 +61,7 @@ Adding support for your own modlist, or any modlist, is easy!
 <div align="center">
 <img src="https://raw.githubusercontent.com/GamesRedone/MOPU/main/images/mopu_readme3.png" alt="Description" width="50%">
 <br>
-<H2>🪶 With this list of changes, MOPU updates your profile.</H2>
+<H2>3. With this list of changes, MOPU updates your profile.</H2>
 </div>
 
 
@@ -71,22 +76,17 @@ Adding support for your own modlist, or any modlist, is easy!
 
 <br>
 
-**👍 MOPU never touches your original profile's folder.**
+**🔐 MOPU never touches your original profile's folder.**
 > It writes the updated profile to a output folder of your choice, that way you can review it before truly overwriting anything.
 
 <BR>
 
 - **Multi-Version Chaining** : By looking at the Official Load Order across multiple version of the same modlist, MOPU can distinguish the author's changes from the user's changes and merge them safely.
-    > Select the modlist version your MO2 profile is currently based on and the target version you want to update/downgrade to.
-    > MOPU analyzes the modlist's version history to identify changes made by the modlist author *(Including added, removed, enabled, disabled, and renamed mods)*, applying those changes to your profile while preserving your own customizations.
+    > With that said, only two versions of the Official load Order are required. So if you want to update/downgrade from one specific version to another, you only need to upload the Official Load Order for these two versions. Not every version in-between. 
 ⠀
 - **Auto Updates Review** : If a mod author disables/enables a mod in an update/downgrade, and you still have it in the original state, the mod will be marked to be Automatically Updated. Most of the time you want this change.
     > Although, you may want to check here to see if any mods were disabled that are required by mods YOU added.
     > MOPU will show you all mods that have been marked for auto update, with the option to "Keep As Is" and reject the Auto Update.
-    
-- **Added Mods** :  Mods that are added by a modlist author are inserted into your load order at the correct position and enabled/disabled state. Any mod you added yourself *(Mods that never existed in any base version of the modlist)*, are left exactly how YOU configured them. ⠀
-
-- **Renamed Mods** :  Mods renamed by the Modlist Author are preserved. If YOU rename any mods, they will be treated as a new mod.
 
 <BR>
 
@@ -104,8 +104,8 @@ Be sure to review the important [Dos & Don't](#dos-donts) before using MOPU.
     > *(All Official Profiles that have been uploaded to the GitHub repo will be available as options)*<br><br>
     > So for ZISS, users can choose from :<br>
     > (e.g.) `ZISS - Community Shaders` or `ZISS - ENB`<br><br>
-    > With the ability to select the exact modlist version of their Custom MO2 Profile *(e.g. `ZISS v1.2.0`)*,<br>
-    > and the version they want to update to *(e.g. `ZISS v1.2.1`)*.
+    > With the ability to select the exact modlist version of their Custom MO2 Profile *(e.g.) `ZISS v1.2.0`*,<br>
+    > and the version they want to update to *(e.g.) `ZISS v1.2.1`*.
 4. Point to the folder of your Custom MO2 Profile, as well as the folder for your output and click Analyze My Profile.
 5. After reviewing, click Confirm Profile Update. If the Output folder is ***NOT*** within your MO2 Profiles folder already, copy the folder to your profiles folder.
     > (e.g.) `C:/ZISS/profiles/`
@@ -162,58 +162,103 @@ Follow this guide when editing the load order for your modlist to ensure your ch
     
 - ***YOU SHOULD*** update your modlist with your modlist installer before using your updated MO2 profile.
     > MOPU is ***NOT*** a modlist installer.<br><br>
-    > This means MOPU's output will ***ONLY*** add new mods the modlists author added to `modlists.txt` and `plugins.txt`.<br><br>
+    > This means MOPU's output will ***ONLY*** add new mods the modlists author added to `modlist.txt` and `plugins.txt`.<br><br>
     > MOPU will ***NOT*** install the actual mod files themselves.
 - ***YOU SHOULD*** always check the Auto Updates section of the log.
     > Mods that are marked to be automatically disabled are listed at the top. Check here to see if any mods are being disabled that are required by mods you have added.
 
 <br>
 
-# How to Setup a GitHub Repo⠀
+## How to Setup a GitHub Repo⠀
 
-Click This Icon 👉   , to package up your Load Order for upload to GitHub.
+1. If you do not have a GitHub repo for the modlist already, you can create one by clicking the `New` button within the `Repositories` tab of your GitHub profile.
 
-Enter the path to your Modlist's folder and MOPU will output the prepared files.
+    <details><summary>Screenshot</summary>
 
-Upload the `loadorder` folder to GitHub and setup is complete!
+    </details>
 
-Repeat for every version of the modlist that you would like MOPU to support.
+2. Enter the name of the modlist as the `Repository name`, ensure the repo is set to `Public`.
+
+    <details><summary>Screenshot</summary>
+
+    </details>
+
+1. Click this Icon 👉 <img src="https://raw.githubusercontent.com/GamesRedone/MOPU/main/images/upload-cloud-blue.png" alt="Description"> within MOPU to package up your Load Order for upload to GitHub.
+
+2. Enter the path to your Modlist's folder and MOPU will output the prepared files.
+
+    <details><summary>Screenshot</summary>
+
+    </details>
+
+3. Upload the `loadorder` folder to GitHub and setup is complete!
+
+    <details><summary>Screenshots</summary>
+
+    </details>
+
+4. Repeat for every version of the modlist that you would like MOPU to support.
+    > Only upload the `v1.0.0-modlist.txt` & `v1.0.0-plugins.txt` files after the first upload, ***NOT*** the `loadorder` folder a second time.<br><br>
+    > If you upload the `loadorder` folder when there is already a `loadorder` folder hosted on the GitHub repo, GitHub will end up placing the folder within your existing `loadorder` folder. This would break the Folder Structure.
+
+    <details><summary>Screenshot</summary>
+
+    </details>
 
 <br>
 
+### *Folder Structure*
 ```
 YourRepo/
 ├── LoadOrder/
-│   ├── <ProfileName>/
+│   ├── [ProfileName]/
 │   │   ├── v1.0.0-modlist.txt
 │   │   ├── v1.0.0-plugins.txt
 │   │   ├── v1.1.0-modlist.txt
 │   │   ├── v1.1.0-plugins.txt
 │   │   └── ...
-│   └── <AnotherProfileName>/
+│   └── [AnotherProfileName]/
 │       └── ...
 └── Changelog/
-    └── diffs.md
+    └── diffs-[ProfileName].md
 ```
-<br>
 
-## *Folder Structure*
-
-- The `LoadOrder` and `Changelog` folder names are case-insensitive
-- <ProfileName> can be anything *(e.g. CS, ENB, Default)*. Each profile becomes a selectable option in the tool.
+- The `LoadOrder` and `Changelog` folder names are case-insensitive.
+    > [ProfileName] can be anything (e.g.) `CS`, `ENB`, `Default`. Each profile becomes a selectable option in the tool.
 - A least two `modlist.txt` and `plugins.txt` files required for each profile.
-- The file name for `modlists.txt` and `plugins.txt` must follow these naming conventions :
+    > So if you want to update/downgrade from one specific version to another, you only need to upload the official Load Order for these two versions. Not every version in-between.  
+- The file name for `modlist.txt` and `plugins.txt` must follow these naming conventions :
   
-  **`v1.0.0-modlists.txt`      `v1.0.0-plugins.txt`**
-  > *The file version must be written using Semantic Versioning (e.g., v1.0.0).*
+  **`v1.0.0-modlist.txt`<br>`v1.0.0-plugins.txt`**
+  > *The file version must be written using Semantic Versioning (e.g.) `v1.0.0`*
+- The file name for `diffs.md` must follow this naming convention :
+  
+  **`diffs-[ProfileName].md`**
+  > `[ProfileName]` must match the name of a profile's folder.
+  > `diffs.md` file names are case-insensitive.
 
 <br>⠀
 
-## 👍 "diffs.md" is NOT required.
-`diff.md` ensures that all changes due to renames are not lost. Most of the time renamed mods are added to the Updated MO2 Profile even without being specifically marked in `diffs.md`. The only time they will not end up being added to the Updated MO2 Profile is if the mod was renamed AND moved in the load order.
-<br><br>To prevent this from happening you can create a diffs.md file.<br>
-⠀ ⠀
-### diffs.md | Format<br>
+## diffs.md
+`diff.md` ensures that all changes due to renames are documented. Although, even without a `diffs.md` file renamed mods will ***NOT*** be lost. They will still be "Added" to the updated MO2 profile.<br><br>
+
+Without a `diffs-[ProfileName].md` file you will receive the following message in your log:
+```
+No diffs-<profile>.md found -- rename detection was skipped.
+
+This means renamed mods will appear as a Added Mod.
+Not as a rename.
+```
+
+👍 You only *really* need to Generate a Changelog if you would like to distinguish this change.
+> (e.g.) You want it to be clear a mod was renamed not added.
+
+<br>
+
+### How to Generate a Changelog
+
+⚠️ Since there is no way to reliably generate a list of Renamed Mods, we must manually enter them.
+> The arrow can be written `→` or `->`
 
 ```
 ## v1.0.0 → v1.1.0
@@ -223,17 +268,23 @@ YourRepo/
 - Another Old Name → Another New Name
 ```
 
-<br>
+This is all MOPU needs. Although, I typically like to include other information as well in my diffs.md file.<br>
 
-I typically like to include other information as well in my diffs.md file, although this is all MOPU needs.
-Since there is no way to reliably generate a list of Renamed Mods, we must manually enter them.
+To generate the other information for your changelog...
+
+Click this icon 👉 <img src="https://raw.githubusercontent.com/GamesRedone/MOPU/main/images/refresh-loop-blue.png" alt="Description"> within MOPU to Sync Your Changelog.
+
+This will generate updated versions of your Diffs Changelog(s), reflecting all changes across every uploaded modlist.txt and plugins.txt file.
+> If there is an existing `diffs.md` file within the `Changelog` folder of the GitHub repo, any previously renamed mod will be pulled from here.<br><br>
+> You will only ever need to enter renamed mods once.
+
 <br><br>
 
 ## Error Log
 
 A diagnostic log for troubleshooting is generated automatically. Please include a copy of this log when reporting any issues/bugs.
 
-All issues/bugs must be reported through the issues page on GitHub. 
+All issues/bugs must be reported through the [Issues Page](https://github.com/GamesRedone/MOPU/issues) on GitHub. 
 
 You can find this log in the output folder of your updated MO2 Profile.
 
