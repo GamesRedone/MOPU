@@ -10,7 +10,7 @@
 
 ## Introduction
 
-MOPU updates/downgrades your custom MO2 Profile to reflect the changes a modlist author makes during an update. Such as; mods they added, removed, renamed, re-positioned, or enabled/disabled. With every change YOU made to your Profile preserved. Including any mods you may have added, enabled, or disabled.
+MOPU updates/downgrades your custom MO2 Profile to reflect the changes a modlist author makes to the Official Profile during an update. Such as; mods they added, removed, renamed, repositioned, or enabled/disabled. With every change YOU made to your Custom Profile preserved. Including any mods you may have added, enabled, or disabled.
 
 <br>
 
@@ -24,11 +24,13 @@ MOPU updates/downgrades your custom MO2 Profile to reflect the changes a modlist
 
 <br>
 
+Click Here to view the modlists that currently support MOPU.
+
 Adding support for your own modlist, or any modlist, is easy!
 
 👍 MOPU has a built in tool to help you package up your Load Order for upload to GitHub. The new home of your modlist's version history.
 
-Once you, or the modlist author, uploads a minimum of ***2 load order versions***, anyone can use the repo to update their profile!
+Once you, or the modlist author, upload a minimum of ***2 load order versions***, anyone can use the repo to update their profile!
 
 > Instructions are listed in the [How to Setup a GitHub Repo](https://github.com/GamesRedone/MOPU/new/main#how-to-setup-a-github-repo) section below.<br><br>
 > Checkout the [MOPU-Test](https://github.com/GamesRedone/MOPU-Test) Repo if you would like to see a live example.<br>
@@ -51,8 +53,9 @@ Once you, or the modlist author, uploads a minimum of ***2 load order versions**
 - Mods/plugins the modlist author added
 - Mods/plugins they have renamed
 - Mods/plugins they removed
-- Mods/plugins they Re-positioned
+- Mods/plugins they repositioned
 - Mods/plugins they have enabled/disabled
+- Mods/plugins YOU added
 
 </details>
 
@@ -87,6 +90,8 @@ Once you, or the modlist author, uploads a minimum of ***2 load order versions**
 - **Auto Updates Review** : If a mod author disables/enables a mod in an update/downgrade, and you still have it in the original state, the mod will be marked to be Automatically Updated. Most of the time you want this change.
     > Although, you may want to check here to see if any mods were disabled that are required by mods YOU added.
     > MOPU will show you all mods that have been marked for auto update, with the option to "Keep As Is" and reject the Auto Update.
+- **Package Your Current Load Order** :
+- **Sync Your Changelog** :
 
 <BR>
 
@@ -94,7 +99,7 @@ Once you, or the modlist author, uploads a minimum of ***2 load order versions**
 
 <br>
 
-# How to Use
+## How to Use
 
 Be sure to review the important [Dos & Don't](#dos-donts) before using MOPU.
 
@@ -106,13 +111,15 @@ Be sure to review the important [Dos & Don't](#dos-donts) before using MOPU.
     > (e.g.) `ZISS - Community Shaders` or `ZISS - ENB`<br><br>
     > With the ability to select the exact modlist version of their Custom MO2 Profile *(e.g.) `ZISS v1.2.0`*,<br>
     > and the version they want to update to *(e.g.) `ZISS v1.2.1`*.
-4. Point to the folder of your Custom MO2 Profile, as well as the folder for your output and click Analyze My Profile.
-5. After reviewing, click Confirm Profile Update. If the Output folder is ***NOT*** within your MO2 Profiles folder already, copy the folder to your profiles folder.
-    > (e.g.) `C:/ZISS/profiles/`
+4. Point to the folder of your Custom MO2 Profile, as well as the folder for your output and click `Analyze My Profile`.
+5. After reviewing, click `Confirm Profile Update`.
+    > If the Output folder is ***NOT*** within your MO2 Profiles folder already, copy the folder to your profiles folder.<br><br>
+    > (e.g.) `C:\ZISS\profiles\`<br>
+    > (e.g.) `C:\Users\<YourUsername>\AppData\Local\ModOrganizer\<InstanceName>\profiles\`
 
 <br>
 
-# Dos & Don'ts
+## Dos & Don'ts
 
 *A majority of these Dos & Don'ts are simply the best practices for updating a customized modlist.*<br>
 
@@ -120,25 +127,25 @@ Follow this guide when editing the load order for your modlist to ensure your ch
 
 <br>
 
-## ***Don'ts***
+### ***Don'ts***
 
-- ***DO NOT*** use MOPU with the incorrect official base profile selected
+- ***DO NOT*** use MOPU with the incorrect official base profile selected.
     > MOPU was designed to update your profile from one specific version of a modlist to another.<br>
     > If you enter the incorrect base profile *(The Official Profile your custom profile was built from)*, you will experience errors.
 - ***DO NOT*** remove any mods the modlist author has included in the modlist. *Unwanted mods should be disabled.*
     > Your modlist installer will just end up reinstalling any mods you remove when you update your modlist.
-- ***DO NOT*** rearrange the sorting, rename, reinstall, or directly configure any mod the modlist author has included.
+- ***DO NOT*** rearrange the sorting, rename, reinstall, or directly reconfigure any mod the modlist author has included.
     > If you wish to setup a custom configuration for a mod...<br>
     > ***Disable the mod you want to configure and install the mod a second time.***<br><br> 
     > The 2nd installation of the mod should be named something different then the first. *Modify this newly installed mod.*<br><br>
-    > (e.g.) You install a mod that requires a patch from [Lux - Via (patch hub)](https://www.nexusmods.com/skyrimspecialedition/mods/116722) that has not been installed by the modlist author.<br>
+    > (e.g.) You install a mod that requires a patch from [Lux - Via (patch hub)](https://www.nexusmods.com/skyrimspecialedition/mods/116722) that has not been installed by the modlist author.<br><br>
     > 1.Disable `Lux - Via (patch hub)`<br>
     > 2. Install `Lux - Via (patch hub)` again, name it something like `(CUSTOM)Lux - Via (patch hub)`<br>
     > 3. Select the patch you need from the FMOD installer and place anywhere in your load order.
 
 <br>
 
-## ***Dos***
+### ***Dos***
 
 - ***YOU SHOULD*** backup your MO2 Profile.
     > Modlist installers like Wabbajack will wipe out any custom MO2 profiles within your modlist folder during an update.<br>
@@ -221,10 +228,15 @@ YourRepo/
 │       └── ...
 └── Changelog/
     └── diffs-[ProfileName].md
+    └── diffs-[AnotherProfileName].md
 ```
 
+MOPU takes care of the Folder Structure for you when you package your current load order. *Click this Icon 👉 <img src="https://raw.githubusercontent.com/GamesRedone/MOPU/main/images/upload-cloud-blue.png" alt="Description">*
+
+- The `Changelog` folder and `diffs-[ProfileName].md` files are optional. [Click Here](#diffsmd) to learn more about the `diffs.md` file.
+    > These are not generated when you package your current load order.
 - The `LoadOrder` and `Changelog` folder names are case-insensitive.
-    > [ProfileName] can be anything (e.g.) `CS`, `ENB`, `Default`. Each profile becomes a selectable option in the tool.
+    > `[ProfileName]` can be anything (e.g.) `CS`, `ENB`, `Default`. Each profile becomes a selectable option in the tool.
 - A least two `modlist.txt` and `plugins.txt` files required for each profile.
     > So if you want to update/downgrade from one specific version to another, you only need to upload the official Load Order for these two versions. Not every version in-between.  
 - The file name for `modlist.txt` and `plugins.txt` must follow these naming conventions :
@@ -270,13 +282,80 @@ Not as a rename.
 
 This is all MOPU needs. Although, I typically like to include other information as well in my diffs.md file.<br>
 
-To generate the other information for your changelog...
+<br>
+
+***To generate the other information for your changelog...***
+> *Mods that were added, removed, repositioned, or enabled/disabled.*
 
 Click this icon 👉 <img src="https://raw.githubusercontent.com/GamesRedone/MOPU/main/images/refresh-loop-blue.png" alt="Description"> within MOPU to Sync Your Changelog.
 
-This will generate updated versions of your Diffs Changelog(s), reflecting all changes across every uploaded modlist.txt and plugins.txt file.
+This will generate updated versions of your Diffs Changelog(s), reflecting all changes across every uploaded `modlist.txt` and `plugins.txt` file.
 > If there is an existing `diffs.md` file within the `Changelog` folder of the GitHub repo, any previously renamed mod will be pulled from here.<br><br>
-> You will only ever need to enter renamed mods once.
+> You will only ever need to manually enter renamed mods once.
+
+<details><summary>Example of a Changelog Generated by MOPU</summary>
+
+```
+# Changes to the Load Order of MOPU-Test
+
+The renamed mods found within this changelog are used by [MOPU](https://www.gamesredone.com/mopu/) to update your Custom MO2 Profile.
+
+## v1.2.2 → v1.2.3
+
+### Added (1)
+
+- [ MOD ] Attack MCO unarmed PA fix
+
+### Removed (1)
+
+- [ PLUGIN ] DisarmlessDraugr.esp
+
+### Disabled (2)
+
+- [ MOD ] ZISS - Icons
+- [ MOD ] Disarmless Draugrs
+
+### Repositioned (2)
+
+- [ MOD ] CS - Wheeler Valhalla Icons
+- [ PLUGIN ] DragonbornsBestiaryMCM.esp
+
+## v1.2.1 → v1.2.2
+
+### Added (4)
+
+- [ MOD ] CS - Wheeler Valhalla Icons
+- [ MOD ] Dragonborns Bestiary MCM
+- [ MOD ] ENB - Wheeler Valhalla Icons
+- [ PLUGIN ] DragonbornsBestiaryMCM.esp
+
+### Removed (1)
+
+- [ MOD ] Wheeler Valhalla Icons
+
+### Enabled (1)
+
+- [ MOD ] ZISS - Icons
+
+## v1.2.0 → v1.2.1
+
+### Added (4)
+
+- [ MOD ] Wrye Bash Output
+- [ MOD ] Variadic Collision Dynamics - Resources
+- [ MOD ] Harrald_TraintoSandbox.esp
+- [ PLUGIN ] Harrald_TraintoSandbox.esp
+
+### Renamed (1)
+
+- [ MOD ] BethINI → BethINI Pie
+
+---
+
+*Generated by [MOPU](https://www.gamesredone.com/mopu/)*
+```
+
+</details>
 
 <br><br>
 
